@@ -38,6 +38,12 @@ export default new Vuex.Store({
 				.then(onComplete)
 				.catch(onError);
 		},
+		eliminarCategoria({ commit }, { id, onComplete, onError }) {
+			axios
+				.delete(`http://localhost:3000/categoria/${id}`)
+				.then(onComplete)
+				.catch(onError);
+		},
 	},
 	modules: {},
 });

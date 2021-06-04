@@ -33,18 +33,38 @@ export default {
 		...mapState(["categorias", "loading"]),
 	},
 	methods: {
-		...mapActions(["setCategorias"]),
+		...mapActions(["setCategorias", "eliminarCategoria"]),
 		onEliminar(item) {
-			this.$bvModal.msgBoxConfirm("¿Está seguro que desea eliminar?", {
-				title: "Eliminar Categoría",
-				size: "sm",
-				buttonSize: "sm",
-				okVariant: "danger",
-				okTitle: "Aceptar",
-				cancelTitle: "Cancelar",
-				footerClass: "p-2",
-				centered: true,
-			});
+			this.$bvModal
+				.msgBoxConfirm("¿Está seguro que desea eliminar?", {
+					title: "Eliminar Categoría",
+					size: "sm",
+					buttonSize: "sm",
+					okVariant: "danger",
+					okTitle: "Aceptar",
+					cancelTitle: "Cancelar",
+					footerClass: "p-2",
+					centered: true,
+				})
+				.then((value) => {
+					if (value) {
+						console.log(item);
+						this.eliminarCategoria({
+							id: item.item.categoria_id,
+
+							onComplete: (response) => {
+								this.$notify({
+									type: "success",
+									title: response.data.mensaje,
+								});
+								setTimeout(() => this.setCategorias(), 1000);
+							},
+						});
+					}
+				})
+				.catch((err) => {
+					// An error occurred
+				});
 		},
 	},
 	mounted() {
