@@ -194,7 +194,7 @@ function eliminarPersonal(req, res) {
 				});
 			} else {
 				return res
-					.status(400)
+					.status(206)
 					.send({ error: true, mensaje: "El personal no puede ser eliminado" });
 			}
 		});
