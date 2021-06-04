@@ -37,7 +37,7 @@ function crearPersonal(req, res) {
 	if (connection) {
 		console.log(req.body);
 		const personal = req.body;
-
+		// TODO: Cambiar de personal a persona
 		if (!personal.personal_nombre) {
 			return res
 				.status(400)
@@ -156,7 +156,10 @@ function editarPersonal(req, res) {
 				let mensaje = "";
 				if (data.changedRows === 0) {
 					mensaje = "La información es la misma";
+				} else {
+					mensaje = "Se actualizaron los datos del personal correctamente"
 				}
+
 
 				res.json({ error: false, data, mensaje });
 			}
