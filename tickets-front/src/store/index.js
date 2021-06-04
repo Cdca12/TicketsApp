@@ -59,6 +59,11 @@ export default new Vuex.Store({
         .get("http://localhost:3000/personal")
         .then((res) => commit("SET_PERSONAL", res.data));
     },
+	crearPersonal({ commit }, { params, onComplete, onError }) {
+		axios.post('http://localhost:3000/personal', params)
+		.then(onComplete)
+		.catch(onError);
+	}
   },
   modules: {},
 });

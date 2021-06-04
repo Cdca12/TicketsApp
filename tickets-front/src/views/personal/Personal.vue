@@ -1,18 +1,24 @@
 <template>
   <div>
     <h1>Personal</h1>
-    <Table :items="personal" :fields="campos" /> 
+    <b-button variant="primary" to="personal/agregar">Agregar</b-button>
+    <Table :items="personal" :fields="campos">
+      <!-- <template slot="actions" slot-scope="{ item }">
+        <b-button variant="primary" @click="onEditar(item)">Editar</b-button>
+        <b-button variant="danger" @click="onEliminar(item)">Eliminar</b-button>
+      </template> -->
+    </Table>
   </div>
 </template>
 
 <script>
-import Table from "../../components/Table";
 import { mapState, mapActions } from "vuex";
+import Table from "../../components/Table";
 
 export default {
   name: "Personal",
   components: {
-    Table,
+      Table
   },
   data() {
     return {
@@ -22,19 +28,21 @@ export default {
         { key: "personal_apellidos", label: "Apellidos" },
         { key: "personal_telefono", label: "Telefono" },
         { key: "personal_direccion", label: "Dirección" },
+        // { key: "actions", label: "Acciones" }
       ],
+
     };
   },
   computed: {
     ...mapState(["personal"]),
   },
   methods: {
-    ...mapActions(["setPersonal"]),
+      ...mapActions(["setPersonal"]),
   },
   // Life cycle methods
   created() {
-    this.setPersonal();
-  },
+      this.setPersonal();
+  }
 };
 </script>
 

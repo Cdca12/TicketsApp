@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Categorias from "../views/categorias/Categorias.vue";
 import AgregarCategoria from "../views/categorias/AgregarCategoria.vue";
 import Personal from "../views/personal/Personal.vue";
+import AgregarPersonal from "../views/personal/AgregarPersonal.vue";
 
 
 Vue.use(VueRouter);
@@ -28,6 +29,11 @@ const routes = [
 		path: "/personal",
 		name: "Personal",
 		component: Personal,
+	},
+	{
+		path: "/personal/agregar",
+		name: "AgregarPersonal",
+		component: AgregarPersonal,
 	}
 ];
 
