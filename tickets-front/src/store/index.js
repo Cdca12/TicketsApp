@@ -22,6 +22,9 @@ export default new Vuex.Store({
     SET_PERSONAL(state, personal) {
       state.personal = personal;
     },
+    SET_PERSONA(state, persona) {
+      state.persona = persona;
+    },
     SET_LOADING(state, payload) {
       state.loading = payload;
     },
@@ -59,11 +62,27 @@ export default new Vuex.Store({
         .get("http://localhost:3000/personal")
         .then((res) => commit("SET_PERSONAL", res.data));
     },
-	crearPersonal({ commit }, { params, onComplete, onError }) {
-		axios.post('http://localhost:3000/personal', params)
-		.then(onComplete)
-		.catch(onError);
-	}
+    crearPersonal({ commit }, { params, onComplete, onError }) {
+      axios
+        .post("http://localhost:3000/personal", params)
+        .then(onComplete)
+        .catch(onError);
+    },
+    obtenerPersonal({ commit }, { id, onComplete, onError }) {
+      axios
+        .get(`http://localhost:3000/personal/${id}`)
+        .then((res) => {
+          commit("SET_PERSONA", res.data.data);
+          onComplete(res);
+        })
+        .catch(onError);
+    },
+    editarPersonal({ commit }, { id, params, onComplete, onError }) {
+      axios
+        .put(`http://localhost:3000/personal/${id}`, params)
+        .then(onComplete)
+        .catch(onError);
+    },
   },
   modules: {},
 });

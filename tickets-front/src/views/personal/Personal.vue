@@ -3,10 +3,10 @@
     <h1>Personal</h1>
     <b-button variant="primary" to="personal/agregar">Agregar</b-button>
     <Table :items="personal" :fields="campos">
-      <!-- <template slot="actions" slot-scope="{ item }">
-        <b-button variant="primary" @click="onEditar(item)">Editar</b-button>
-        <b-button variant="danger" @click="onEliminar(item)">Eliminar</b-button>
-      </template> -->
+      <template slot="actions" slot-scope="{item}">
+        <b-button variant="primary" class="me-1" @click="onEditar(item)">Editar</b-button>
+        <!-- <b-button variant="danger" @click="onEliminar(item)">Eliminar</b-button> -->
+      </template>
     </Table>
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
         { key: "personal_apellidos", label: "Apellidos" },
         { key: "personal_telefono", label: "Telefono" },
         { key: "personal_direccion", label: "Dirección" },
-        // { key: "actions", label: "Acciones" }
+        { key: "actions", label: "Acciones" }
       ],
 
     };
@@ -38,9 +38,17 @@ export default {
   },
   methods: {
       ...mapActions(["setPersonal"]),
+      onEditar(item) {
+        this.$router.push({
+          name: 'EditarPersonal',
+          params: {
+            id: item.item.personal_id
+          }
+        })
+      }
   },
   // Life cycle methods
-  created() {
+   created() {
       this.setPersonal();
   }
 };
