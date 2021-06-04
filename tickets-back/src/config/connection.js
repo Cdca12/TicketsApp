@@ -4,7 +4,7 @@ const objectConnection = {
     "host": "localhost",
     "port": "3306",
     "user": "root",
-    "password": "12345",
+    "password": "Admin$123",
     "database": "tickets"
 }
 

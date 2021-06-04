@@ -3,6 +3,8 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Categorias from "../views/categorias/Categorias.vue";
 import AgregarCategoria from "../views/categorias/AgregarCategoria.vue";
+import Personal from "../views/personal/Personal.vue";
+
 
 Vue.use(VueRouter);
 
@@ -22,6 +24,11 @@ const routes = [
 		name: "AgregarCategoria",
 		component: AgregarCategoria,
 	},
+	{
+		path: "/personal",
+		name: "Personal",
+		component: Personal,
+	}
 ];
 
 const router = new VueRouter({
