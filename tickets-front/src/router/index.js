@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Categorias from "../views/categorias/Categorias.vue";
+import AgregarCategoria from "../views/categorias/AgregarCategoria.vue";
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ const routes = [
 		path: "/categorias",
 		name: "Categorias",
 		component: Categorias,
+	},
+	{
+		path: "/categorias/agregar",
+		name: "AgregarCategoria",
+		component: AgregarCategoria,
 	},
 ];
 

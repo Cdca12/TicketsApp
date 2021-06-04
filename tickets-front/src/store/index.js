@@ -7,6 +7,7 @@ export default new Vuex.Store({
 	state: {
 		tickets: [],
 		categorias: [],
+		categoria: {},
 		loading: false,
 	},
 	mutations: {
@@ -23,17 +24,19 @@ export default new Vuex.Store({
 	actions: {
 		setTickets({ commit }) {
 			axios.get("http://localhost:3000/ticket").then((response) => {
-				commit("SET_TICKETS", response.data).finally(() =>
-					commit("SET_LOADING", false)
-				);
+				commit("SET_TICKETS", response.data);
 			});
 		},
 		setCategorias({ commit }) {
 			axios.get("http://localhost:3000/categoria").then((response) => {
-				commit("SET_CATEGORIAS", response.data).finally(() => {
-					commit("SET_LOADING", false);
-				});
+				commit("SET_CATEGORIAS", response.data);
 			});
+		},
+		crearCategoria({ commit }, { params, onComplete, onError }) {
+			axios
+				.post("http://localhost:3000/categoria", params)
+				.then(onComplete)
+				.catch(onError);
 		},
 	},
 	modules: {},
