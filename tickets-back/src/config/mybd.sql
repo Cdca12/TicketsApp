@@ -38,3 +38,20 @@ ALTER TABLE PERSONAL ALTER personal_telefono SET DEFAULT '-';
 ALTER TABLE PERSONAL ALTER personal_direccion SET DEFAULT 'Sin direccion';
 /*TICKET*/
 ALTER TABLE TICKET ALTER ticket_descripcion SET DEFAULT 'Sin descripcion';
+
+CREATE VIEW vTicket AS
+SELECT t.ticket_id, t.ticket_nombre, t.ticket_descripcion, t.ticket_prioridad, t.ticket_estatus, 
+p.personal_id, p.personal_nombre, c.categoria_id, c.categoria_nombre
+FROM ticket t
+INNER JOIN personal p ON p.personal_id = t.personal_id
+INNER JOIN categoria c ON c.categoria_id = t.categoria_id;
+
+INSERT INTO categoria (categoria_nombre) VALUES ('Incidencia');
+INSERT INTO categoria (categoria_nombre) VALUES ('Consulta');
+
+INSERT INTO personal (personal_nombre, personal_apellidos, personal_telefono, personal_direccion) VALUES ('Héctor', 'Sánchez Martínez', '6672321829', 'Calle 2');
+INSERT INTO personal (personal_nombre, personal_apellidos, personal_telefono, personal_direccion) VALUES ('María', 'Pérez Camacho', '6674329120', 'Calle Londres');
+
+INSERT INTO ticket (ticket_nombre, ticket_descripcion, ticket_prioridad, ticket_estatus, personal_id, categoria_id) VALUES ('Incidencia con la base de datos', 'La base de datos se cayó', '1', 'ABT', 1, 1);
+INSERT INTO ticket (ticket_nombre, ticket_descripcion, ticket_prioridad, ticket_estatus, personal_id, categoria_id) VALUES ('Problema de red', 'Un dispositivo sin conexión', '2', 'ESP', 1, 1);
+INSERT INTO ticket (ticket_nombre, ticket_descripcion, ticket_prioridad, ticket_estatus, personal_id, categoria_id) VALUES ('Dudas sobre el sistema', 'Se necesitan respuestas sobre el funcionamiento del nuevo sistema', '3', 'FIN', 2, 2);
