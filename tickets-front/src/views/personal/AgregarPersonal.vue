@@ -97,7 +97,6 @@ export default {
   methods: {
     ...mapActions(["crearPersonal"]),
     agregarPersonal() {
-      console.log(this.persona);
       if (
         !(
           this.validarNombre &&

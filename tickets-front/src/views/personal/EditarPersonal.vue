@@ -3,6 +3,13 @@
     <h1>Editar Personal</h1>
     <b-form @submit.prevent="guardarPersonal()">
       <Input
+        v-model="persona.personal_id"
+        id="id"
+        titulo="Clave"
+        :disabled="true"
+        class="mt-3"
+      />
+      <Input
         v-model="persona.personal_nombre"
         id="nombre"
         titulo="Nombre"

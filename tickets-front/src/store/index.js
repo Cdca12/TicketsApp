@@ -83,6 +83,12 @@ export default new Vuex.Store({
         .then(onComplete)
         .catch(onError);
     },
+    eliminarPersonal({ commit }, { id, onComplete, onError }) {
+      axios
+        .delete(`http://localhost:3000/personal/${id}`)
+        .then(onComplete)
+        .catch(onError);
+    },
   },
   modules: {},
 });
