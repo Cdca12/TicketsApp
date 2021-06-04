@@ -167,19 +167,32 @@ function editarPersonal(req, res) {
 function eliminarPersonal(req, res) {
 	if (connection) {
 		const personal_id = req.params.id;
-		let sql = "DELETE FROM PERSONAL WHERE personal_id = ?";
-		connection.query(sql, [personal_id], (err, data) => {
-			if (err) {
-				res.json(err);
-			} else {
-				let mensaje = "";
-				if (data.affectedRows === 0) {
-					mensaje = "Personal no encontrado";
-				} else {
-					mensaje = "Personal eliminado con éxito";
-				}
 
-				res.json({ error: false, data, mensaje });
+		let sqltickets = `SELECT * FROM TICKET WHERE personal_id = ${connection.escape(personal_id)}`;
+		connection.query(sqltickets, (err, ticket) => {
+			if (err) {
+				console.log(err);
+			}
+			if (ticket === undefined || ticket.length == 0) {
+				let sql = "DELETE FROM PERSONAL WHERE personal_id = ?";
+				connection.query(sql, [personal_id], (err, data) => {
+					if (err) {
+						res.json(err);
+					} else {
+						let mensaje = "";
+						if (data.affectedRows === 0) {
+							mensaje = "Personal no encontrado";
+						} else {
+							mensaje = "Personal eliminado con éxito";
+						}
+
+						res.json({ error: false, data, mensaje });
+					}
+				});
+			} else {
+				return res
+					.status(400)
+					.send({ error: true, mensaje: "El personal no puede ser eliminado" });
 			}
 		});
 	}
