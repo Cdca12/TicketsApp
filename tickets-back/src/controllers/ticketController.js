@@ -33,6 +33,23 @@ function obtenerTicket(req, res) {
 	}
 }
 
+function obtenerTicketCategoria(req, res) {
+	if (connection) {
+		const categoria_id = req.params.id;
+		let sql = `SELECT * FROM vTicket WHERE categoria_id = ? ORDER BY ticket_id`;
+		connection.query(sql, [categoria_id], (err, ticket) => {
+			if (err) {
+				console.log(err);
+			} else {
+				var mensaje1 = "";
+				if (ticket === undefined || ticket.length == 0)
+					mensaje1 = "Categoría no encontrada";
+				res.json({ data: ticket, mensaje: mensaje1 });
+			}
+		});
+	}
+}
+
 function crearTicket(req, res) {
 	if (connection) {
 		console.log(req.body);
@@ -59,29 +76,29 @@ function crearTicket(req, res) {
 				.send({ error: true, mensaje: "La categoria es obligatoria" });
 		}
 		if (ticket.ticket_nombre && ticket.ticket_nombre.length > 50) {
-			return res
-				.status(400)
-				.send({
-					error: true,
-					mensaje:
-						"La longitud del nombre debe ser máximo de 50 caracteres",
-				});
+			return res.status(400).send({
+				error: true,
+				mensaje:
+					"La longitud del nombre debe ser máximo de 50 caracteres",
+			});
 		}
 		if (
 			ticket.ticket_descripcion &&
 			ticket.ticket_descripcion.length > 100
 		) {
-			return res
-				.status(400)
-				.send({
-					error: true,
-					mensaje:
-						"La longitud de la descripción debe ser máximo de 100 caracteres",
-				});
+			return res.status(400).send({
+				error: true,
+				mensaje:
+					"La longitud de la descripción debe ser máximo de 100 caracteres",
+			});
 		}
 
-		let sqlpersonal = `SELECT * FROM PERSONAL WHERE personal_id = ${connection.escape(ticket.personal_id)}`;
-		let sqlcategoria = `SELECT * FROM CATEGORIA WHERE categoria_id = ${connection.escape(ticket.categoria_id)}`;
+		let sqlpersonal = `SELECT * FROM PERSONAL WHERE personal_id = ${connection.escape(
+			ticket.personal_id
+		)}`;
+		let sqlcategoria = `SELECT * FROM CATEGORIA WHERE categoria_id = ${connection.escape(
+			ticket.categoria_id
+		)}`;
 		connection.query(sqlpersonal, (err, personal) => {
 			if (err) {
 				console.log(err);
@@ -96,12 +113,10 @@ function crearTicket(req, res) {
 						console.log(err);
 					}
 					if (categoria === undefined || categoria.length == 0) {
-						return res
-							.status(400)
-							.send({
-								error: true,
-								mensaje: "La categoria no existe",
-							});
+						return res.status(400).send({
+							error: true,
+							mensaje: "La categoria no existe",
+						});
 					} else {
 						let sql = "INSERT INTO TICKET set ?";
 
@@ -173,25 +188,21 @@ function editarTicket(req, res) {
 				.send({ error: true, mensaje: "La categoria es obligatoria" });
 		}
 		if (ticket.ticket_nombre && ticket.ticket_nombre.length > 50) {
-			return res
-				.status(400)
-				.send({
-					error: true,
-					mensaje:
-						"La longitud del nombre debe ser máximo de 50 caracteres",
-				});
+			return res.status(400).send({
+				error: true,
+				mensaje:
+					"La longitud del nombre debe ser máximo de 50 caracteres",
+			});
 		}
 		if (
 			ticket.ticket_descripcion &&
 			ticket.ticket_descripcion.length > 100
 		) {
-			return res
-				.status(400)
-				.send({
-					error: true,
-					mensaje:
-						"La longitud de la descripción debe ser máximo de 100 caracteres",
-				});
+			return res.status(400).send({
+				error: true,
+				mensaje:
+					"La longitud de la descripción debe ser máximo de 100 caracteres",
+			});
 		}
 
 		let sqlpersonal = `SELECT * FROM PERSONAL WHERE personal_id = ${connection.escape(
@@ -214,12 +225,10 @@ function editarTicket(req, res) {
 						console.log(err);
 					}
 					if (categoria === undefined || categoria.length == 0) {
-						return res
-							.status(400)
-							.send({
-								error: true,
-								mensaje: "La categoria no existe",
-							});
+						return res.status(400).send({
+							error: true,
+							mensaje: "La categoria no existe",
+						});
 					} else {
 						let sql = "UPDATE TICKET set ? WHERE ticket_id = ?";
 
@@ -285,6 +294,7 @@ function eliminarTicket(req, res) {
 module.exports = {
 	listarTickets,
 	obtenerTicket,
+	obtenerTicketCategoria,
 	crearTicket,
 	editarTicket,
 	eliminarTicket,
