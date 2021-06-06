@@ -2,7 +2,7 @@ const connection = require("../config/connection");
 
 function listarTickets(req, res) {
 	if (connection) {
-		let sql = "SELECT * FROM vTicket";
+		let sql = "SELECT * FROM vTicket ORDER BY ticket_id";
 		connection.query(sql, (err, personal) => {
 			if (err) {
 				res.json(err);
@@ -80,12 +80,8 @@ function crearTicket(req, res) {
 				});
 		}
 
-		let sqlpersonal = `SELECT * FROM PERSONAL WHERE personal_id = ${connection.escape(
-			ticket.personal_id
-		)}`;
-		let sqlcategoria = `SELECT * FROM CATEGORIA WHERE categoria_id = ${connection.escape(
-			ticket.categoria_id
-		)}`;
+		let sqlpersonal = `SELECT * FROM PERSONAL WHERE personal_id = ${connection.escape(ticket.personal_id)}`;
+		let sqlcategoria = `SELECT * FROM CATEGORIA WHERE categoria_id = ${connection.escape(ticket.categoria_id)}`;
 		connection.query(sqlpersonal, (err, personal) => {
 			if (err) {
 				console.log(err);

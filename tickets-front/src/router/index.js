@@ -6,6 +6,10 @@ import AgregarCategoria from "../views/categorias/AgregarCategoria.vue";
 import Personal from "../views/personal/Personal.vue";
 import AgregarPersonal from "../views/personal/AgregarPersonal.vue";
 import EditarPersonal from "../views/personal/EditarPersonal.vue";
+import Tickets from "../views/tickets/Tickets.vue";
+import AgregarTicket from "../views/tickets/AgregarTicket.vue";
+import EditarTicket from "../views/tickets/EditarTicket.vue";
+
 
 Vue.use(VueRouter);
 
@@ -40,6 +44,21 @@ const routes = [
     name: "EditarPersonal",
     component: EditarPersonal,
   },
+  {
+    path: "/tickets",
+    name: "Tickets",
+    component: Tickets,
+  },
+  {
+    path: "/tickets/agregar",
+    name: "AgregarTicket",
+    component: AgregarTicket,
+  },
+  {
+    path: "/tickets/editar/:id",
+    name: "EditarTicket",
+    component: EditarTicket,
+  }
 ];
 
 const router = new VueRouter({
