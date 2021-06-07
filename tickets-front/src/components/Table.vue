@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<b-table stripe hover :busy="busy" :items="items" :fields="fields" >
+		<b-table class="tabla" stripe hover :busy="busy" :items="items" :fields="fields" >
 			<template #table-busy>
 				<div class="text-center text-danger my-2">
 					<b-spinner class="align-middle"></b-spinner>
@@ -30,6 +30,13 @@ export default {
 <style>
 .botones {
 	font-size: 32px;
+}
+
+.tabla {
+	background-color: white;
+	box-shadow: 0px 10px 20px -7px rgba(32, 56, 117, 0.527);
+	border-radius: 5px;
+	
 }
 
 </style>

@@ -170,6 +170,7 @@ export default {
   border-radius: 5px;
   padding: 10px;
   overflow: hidden;
+  background-color: white;
 }
 
 .inputs {
