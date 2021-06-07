@@ -4,6 +4,7 @@
 			<div>
 				<Select
 					:items="categorias"
+					showAll="Mostrar todas las categorías"
 					v-model="ticket.ticket_id"
 					id="categoria"
 					iditem="categoria_id"
@@ -17,7 +18,7 @@
 				<b-table
 					striped
 					hover
-					:items="tickets"
+					:items="ticketsFiltrados"
 					:fields="campos"
 					:tbody-tr-class="rowClass"
 				></b-table>
@@ -37,6 +38,15 @@ export default {
 	},
 	computed: {
 		...mapState(["tickets", "categorias"]),
+		ticketsFiltrados() {
+			if (this.categoriaIdFiltro == 0) {
+				return this.tickets;
+			} else {
+				return this.tickets.filter(row => {
+					return row.categoria_id == this.categoriaIdFiltro;
+				})
+			}
+		}
 	},
 	methods: {
 		...mapActions([
@@ -51,19 +61,13 @@ export default {
 			if (item.ticket_estatus === "FIN") return "table-dark";
 		},
 		filtrarCategorias(idC) {
-			this.categoriaSeleccionada = idC;
-			if (!idC) {
-				this.setTickets();
-			} else {
-				this.obtenerTicketCategoria(idC);
-			}
+			this.categoriaIdFiltro = idC;
 		},
 	},
 
 	data() {
 		return {
-			ticketC: 0,
-			// Note 'isActive' is left out and will not appear in the rendered table
+			categoriaIdFiltro: 0,
 			campos: [
 				{
 					key: "ticket_nombre",
@@ -74,7 +78,6 @@ export default {
 					label: "Categoría",
 				},
 			],
-			// selected: "0",
 			ticket: {
 				ticket_nombre: "",
 				ticket_descripcion: "",
@@ -82,7 +85,6 @@ export default {
 				personal_id: "",
 				categoria_id: "",
 			},
-			categoriaSeleccionada: null,
 		};
 	},
 	mounted() {

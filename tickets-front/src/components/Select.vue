@@ -10,6 +10,7 @@
         @input="$emit('input', $event.target.value)"
       >
         <option :value="null" selected disabled>– Selecciona una opción –</option>
+        <option v-if="showAll" :value="0" selected> {{ showAll }} </option>
         <option
           v-for="item in items"
           :value="item[iditem]"
@@ -28,6 +29,7 @@
 export default {
   name: "Select",
   props: {
+    showAll: String,
     items: Array,
     vmodel: {
       type: [String, Number],
