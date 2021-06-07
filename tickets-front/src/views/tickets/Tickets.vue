@@ -2,15 +2,22 @@
   <div>
     <h1>Tickets</h1>
     <div class="boton-agregar">
-    <b-button  variant="primary" to="tickets/agregar">Agregar</b-button></b-col>
+    <b-button  variant="primary" to="tickets/agregar">
+      <b-icon icon="plus" /> Agregar
+    </b-button>
+
 
     </div>
     
     <Table :items="tickets" :fields="campos">   
-      <template slot="actions" slot-scope="{ item }">
-        <b-button variant="primary" class="mb-2" @click="onEditarTicket(item)">Editar</b-button>
+      <template slot="actions" slot-scope="{ item }" class="acciones">
+        <b-button variant="primary" class="mb-2" @click="onEditarTicket(item)">
+          <b-icon icon="pencil-square" /> Editar
+        </b-button>
         <b-button variant="outline-primary" class="mb-2 mx-2" @click="onEditarEstatus(item)">Cambiar estatus</b-button>
-        <b-button variant="danger" @click="onEliminar(item)">Eliminar</b-button>
+        <b-button variant="danger" @click="onEliminar(item)">
+          <b-icon icon="trash" /> Eliminar
+        </b-button>
       </template>
     </Table>
   </div>
@@ -35,7 +42,7 @@ export default {
         { key: "ticket_estatus", label: "Estatus" },
         { key: "personal_nombre", label: "Personal" },
         { key: "categoria_nombre", label: "Categoría" },
-        { key: "actions", label: "Acciones" },
+        { key: "actions", label: "Acciones", thStyle: { width: '30%'} }
       ],
     };
   },
@@ -109,4 +116,10 @@ export default {
   float: right;
   margin-right: 5%;
 }  
+
+.acciones {
+	max-width: 50px;
+	font-size: 20px;
+  background-color: red;
+}
 </style>

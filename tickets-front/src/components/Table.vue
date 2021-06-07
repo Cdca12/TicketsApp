@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<b-table stripe hover :busy="busy" :items="items" :fields="fields">
+		<b-table stripe hover :busy="busy" :items="items" :fields="fields" >
 			<template #table-busy>
 				<div class="text-center text-danger my-2">
 					<b-spinner class="align-middle"></b-spinner>
@@ -9,8 +9,8 @@
 			</template>
 
 			// Bootstrap
-			<template #cell(actions)="data">
-				<slot name="actions" :item="data"> </slot>
+			<template #cell(actions)="data" >
+				<slot name="actions" :item="data" > </slot>
 			</template>
 		</b-table>
 	</div>
@@ -27,4 +27,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>

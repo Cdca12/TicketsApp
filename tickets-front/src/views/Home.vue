@@ -1,7 +1,7 @@
 <template>
 	<div class="home">
 		<template>
-			<div>
+			<div class="filtrado">
 				<Select
 					:items="categorias"
 					showAll="Mostrar todas las categorías"
@@ -11,7 +11,8 @@
 					name="categoria_nombre"
 					titulo="Ver por categorías"
 					@filter="filtrarCategorias"
-					class="mt-3"
+					class="col-5"
+					
 				/>
 			</div>
 			<div>
@@ -114,8 +115,14 @@ export default {
 .tickets {
 	display: inline-block;
 	align-content: center;
-	margin-top: 20px;
+	margin-top: 10px;
 	/* justify-content: space-around; */
 	width: 90%;
+}
+
+.filtrado {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 </style>

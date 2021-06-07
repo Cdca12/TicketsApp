@@ -59,4 +59,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.form-control {
+  margin-top: 10px;
+}
+
+</style>

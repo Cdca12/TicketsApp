@@ -7,12 +7,12 @@
     </div>
     <div class="content">
         {{ mensaje }} <br>
-        <div class="tags">
-            <div v-for="tag in tags" v-bind:key="tag" class="tag">
-                {{ tag }}
-            </div>
-        </div>
     </div>
+        <ul class="tags">
+            <li v-for="tag in tags" v-bind:key="tag" class="tag">
+                {{ tag }}
+            </li>
+        </ul>
   </div>
 </template>
 
@@ -73,27 +73,48 @@ export default {
 
 .content {
     margin-top: 10px;
-    
     text-align: left;
     padding: 0px 10px;
+    height: 80px;
+    overflow-y: auto;
+    
 }
 
 .tags {
-    display: inline-block;
-    position:relative;
+    overflow: hidden;
+    padding: 0;
+    
+}
+
+.tags li {
+    float: left;
+    position: relative;
+    margin-left: 10px;
 }
 
 .tag {
-    background-color: rgb(104, 90, 90);
-    font-weight: bold;
-    font-size: 12px;
-    /* width: max-content; */
+    font-size: 14px;
+    background: #eee;
+    border-radius: 5px;
+    color: #999;
     display: inline-block;
-    margin: 30px 5px -20px 0px;
-    
-    padding: 5px;
-    /* position: relative; */
-    /* bottom: 0; */
+    line-height: 26px;
+    padding: 0 20px 0 23px;
+    position: relative;
+    text-decoration: none;
+    -webkit-transition: color 0.2s;
+}
+
+.tag::before {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+    content: '';
+    height: 6px;
+    left: 10px;
+    position: absolute;
+    width: 6px;
+    top: 10px;
 }
 
 .showSpaces{
