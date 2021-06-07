@@ -9,10 +9,10 @@
     
     <Table :items="tickets" :fields="campos">   
       <template slot="actions" slot-scope="{ item }" >
-        <b-button variant="warning" class="mb-2" @click="onEditarTicket(item)">
+        <b-button variant="warning" class="my-1" @click="onEditarTicket(item)">
           <b-icon icon="pencil-square" /> Editar
         </b-button>
-        <b-button variant="primary" class="mb-2 mx-2" @click="onEditarEstatus(item)">Cambiar estatus</b-button>
+        <b-button variant="primary" class="mx-2" @click="onEditarEstatus(item)">Cambiar estatus</b-button>
         <b-button variant="danger" @click="onEliminar(item)">
           <b-icon icon="trash" /> Eliminar
         </b-button>
@@ -40,7 +40,7 @@ export default {
         { key: "ticket_estatus", label: "Estatus" },
         { key: "personal_nombre", label: "Personal" },
         { key: "categoria_nombre", label: "Categoría", thStyle: { width: '15%'} },
-        { key: "actions", label: "Acciones", thStyle: { width: '30%'} }
+        { key: "actions", label: "Acciones", thStyle: { width: '30%' } }
       ],
     };
   },
@@ -114,6 +114,7 @@ export default {
   float: right;
   margin-right: 1%;
   margin-top: 5px;
+  margin-bottom: 15px;
 }  
 
 </style>

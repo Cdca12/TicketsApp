@@ -83,26 +83,25 @@ export default {
 .tags {
     overflow: hidden;
     padding: 0;
-    
+    margin-left: 10px;
 }
 
 .tags li {
     float: left;
     position: relative;
-    margin-left: 10px;
+    margin-right: 18px;
 }
 
 .tag {
     font-size: 14px;
     background: #eee;
-    border-radius: 5px;
+    border-radius: 5px 7px 7px 5px;
     color: rgb(107, 107, 107);
     display: inline-block;
     line-height: 26px;
     padding: 0 20px 0 23px;
     position: relative;
     text-decoration: none;
-    -webkit-transition: color 0.2s;
 }
 
 .tag::before {
@@ -115,6 +114,17 @@ export default {
     position: absolute;
     width: 6px;
     top: 10px;
+}
+
+.tag::after {
+  /* background: #fff; */
+  border-bottom: 13px solid transparent;
+  border-left: 13px solid #eee;
+  border-top: 13px solid transparent;
+  content: '';
+  position: absolute;
+  left: 95%;
+  top: 0;
 }
 
 .showSpaces{

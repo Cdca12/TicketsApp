@@ -10,7 +10,7 @@
 
 			// Bootstrap
 			<template #cell(actions)="data" >
-				<slot name="actions" :item="data" > </slot>
+				<slot class="align-middle" name="actions" :item="data" > </slot>
 			</template>
 		</b-table>
 	</div>
@@ -28,15 +28,12 @@ export default {
 </script>
 
 <style>
-.botones {
-	font-size: 32px;
-}
+
 
 .tabla {
 	background-color: white;
 	box-shadow: 0px 10px 20px -7px rgba(32, 56, 117, 0.527);
 	border-radius: 5px;
-	
 }
 
 </style>
