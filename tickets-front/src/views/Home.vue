@@ -15,13 +15,18 @@
 				/>
 			</div>
 			<div>
-				<b-table
-					striped
-					hover
-					:items="ticketsFiltrados"
-					:fields="campos"
-					:tbody-tr-class="rowClass"
-				></b-table>
+
+			<div class="tickets">
+				<Card
+					:color="obtenerColor(t.ticket_estatus)"
+					v-for="t in ticketsFiltrados"
+					:key="t.ticket_id"
+					:titulo="t.ticket_nombre"
+					:mensaje="t.ticket_descripcion"
+					:tags="[obtenerPrioridad(t.ticket_prioridad), obtenerEstatus(t.ticket_estatus)] "/>
+			</div>
+
+
 			</div>
 		</template>
 	</div>
@@ -29,12 +34,13 @@
 
 <script>
 import Select from "../components/Select.vue";
+import Card from "../components/Card.vue";
 import { mapState, mapActions } from "vuex";
 
 export default {
 	name: "Home",
 	components: {
-		Select,
+		Select, Card
 	},
 	computed: {
 		...mapState(["tickets", "categorias"]),
@@ -46,7 +52,7 @@ export default {
 					return row.categoria_id == this.categoriaIdFiltro;
 				})
 			}
-		}
+		},
 	},
 	methods: {
 		...mapActions([
@@ -54,11 +60,20 @@ export default {
 			"setCategorias",
 			"obtenerTicketCategoria",
 		]),
-		rowClass(item, type) {
-			if (!item || type !== "row") return;
-			if (item.ticket_estatus === "ABT") return "table-danger";
-			if (item.ticket_estatus === "ESP") return "table-success";
-			if (item.ticket_estatus === "FIN") return "table-dark";
+		obtenerColor(ticket_estatus) {
+			if (ticket_estatus === "ABT") return "bg-danger";
+			if (ticket_estatus === "ESP") return "bg-success";
+			if (ticket_estatus === "FIN") return "bg-secondary";
+		},
+		obtenerEstatus(ticket_estatus) {
+			if (ticket_estatus === "ABT") return "Abierto";
+			if (ticket_estatus === "ESP") return "En espera";
+			if (ticket_estatus === "FIN") return "Finalizado";
+		},
+		obtenerPrioridad(ticket_prioridad) {
+			if (ticket_prioridad == 1) return "Baja";
+			if (ticket_prioridad == 2) return "Media";
+			if (ticket_prioridad == 3) return "Alta";
 		},
 		filtrarCategorias(idC) {
 			this.categoriaIdFiltro = idC;
@@ -94,4 +109,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.tickets {
+	display: inline-block;
+	margin-top: 20px;
+	/* justify-content: space-around; */
+	width: 90%;
+}
+</style>
