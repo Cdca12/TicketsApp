@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>Agregar Personal</h1>
-    <b-form @submit.prevent="agregarPersonal()">
+    <b-form class="formulario" @submit.prevent="agregarPersonal()">
+      <div class="inputs">
       <Input
         v-model="persona.personal_nombre"
         id="nombre"
@@ -10,7 +11,7 @@
         :maxlength="50"
         :error="erroresValidacion && !validarNombre"
         mensajeError="Es necesario ingresar el nombre"
-        class="mt-3"
+        class="mt-3 col-10"
       />
       <Input
         v-model="persona.personal_apellidos"
@@ -20,7 +21,7 @@
         :maxlength="80"
         :error="erroresValidacion && !validarApellidos"
         mensajeError="Es necesario ingresar los apellidos de la persona"
-        class="mt-3"
+        class="mt-3 col-10"
       />
       <Input
         v-model="persona.personal_telefono"
@@ -31,7 +32,7 @@
         :maxlength="10"
         :error="erroresValidacion && !validarTelefono"
         mensajeError="Es necesario ingresar el teléfono"
-        class="mt-3"
+        class="mt-3 col-10"
       />
       <Input
         v-model="persona.personal_direccion"
@@ -41,9 +42,10 @@
         :maxlength="150"
         :error="erroresValidacion && !validarDireccion"
         mensajeError="Es necesario ingresar la dirección"
-        class="mt-3"
+        class="mt-3 col-10"
       />
-      <b-button type="submit" class="mt-2" variant="primary">Guardar</b-button>
+      </div>
+      <b-button type="submit" class="mt-4 boton-guardar" variant="dark">Guardar</b-button>
     </b-form>
   </div>
 </template>

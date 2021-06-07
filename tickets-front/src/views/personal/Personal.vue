@@ -1,12 +1,18 @@
 <template>
   <div>
     <h1>Personal</h1>
-    <b-button variant="primary" to="personal/agregar">
-      <b-icon icon="plus" /> Agregar
-    </b-button>
+    <div class="boton-agregar">
+      <b-button variant="dark" to="personal/agregar">
+        <b-icon icon="plus" /> Agregar
+      </b-button>
+    </div>
+
+
+
+
     <Table :items="personal" :fields="campos">
       <template slot="actions" slot-scope="{ item }">
-        <b-button variant="primary" class="me-1" @click="onEditar(item)">
+        <b-button variant="warning" class="me-1" @click="onEditar(item)">
           <b-icon icon="pencil-square" /> Editar
         </b-button>
         <b-button variant="danger" @click="onEliminar(item)">
@@ -96,4 +102,7 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+
+</style>

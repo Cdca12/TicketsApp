@@ -28,5 +28,8 @@ export default {
 </script>
 
 <style>
+.botones {
+	font-size: 32px;
+}
 
 </style>

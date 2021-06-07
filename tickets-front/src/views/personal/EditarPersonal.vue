@@ -1,56 +1,58 @@
 <template>
   <div>
     <h1>Editar Personal</h1>
-    <b-form @submit.prevent="guardarPersonal()">
-      <Input
-        v-model="persona.personal_id"
-        id="id"
-        titulo="Clave"
-        :disabled="true"
-        class="mt-3"
-      />
-      <Input
-        v-model="persona.personal_nombre"
-        id="nombre"
-        titulo="Nombre"
-        placeholder="Ingrese el nombre de la persona"
-        :maxlength="50"
-        :error="erroresValidacion && !validarNombre"
-        mensajeError="Es necesario ingresar el nombre"
-        class="mt-3"
-      />
-      <Input
-        v-model="persona.personal_apellidos"
-        id="apellidos"
-        titulo="Apellidos"
-        placeholder="Ingrese los apellidos de la persona"
-        :maxlength="80"
-        :error="erroresValidacion && !validarApellidos"
-        mensajeError="Es necesario ingresar los apellidos de la persona"
-        class="mt-3"
-      />
-      <Input
-        v-model="persona.personal_telefono"
-        id="telefono"
-        titulo="Telefono"
-        tipo="number"
-        placeholder="Ingrese el teléfono de la persona"
-        :maxlength="10"
-        :error="erroresValidacion && !validarTelefono"
-        mensajeError="Es necesario ingresar el teléfono"
-        class="mt-3"
-      />
-      <Input
-        v-model="persona.personal_direccion"
-        id="direccion"
-        titulo="Dirección"
-        placeholder="Ingrese la dirección de la persona"
-        :maxlength="150"
-        :error="erroresValidacion && !validarDireccion"
-        mensajeError="Es necesario ingresar la dirección"
-        class="mt-3"
-      />
-      <b-button type="submit" class="mt-2" variant="primary">Guardar</b-button>
+    <b-form class="formulario" @submit.prevent="guardarPersonal()">
+      <div class="inputs">
+        <Input
+          v-model="persona.personal_id"
+          id="id"
+          titulo="Clave"
+          :disabled="true"
+          class="mt-3 col-10"
+        />
+        <Input
+          v-model="persona.personal_nombre"
+          id="nombre"
+          titulo="Nombre"
+          placeholder="Ingrese el nombre de la persona"
+          :maxlength="50"
+          :error="erroresValidacion && !validarNombre"
+          mensajeError="Es necesario ingresar el nombre"
+          class="mt-3 col-10"
+        />
+        <Input
+          v-model="persona.personal_apellidos"
+          id="apellidos"
+          titulo="Apellidos"
+          placeholder="Ingrese los apellidos de la persona"
+          :maxlength="80"
+          :error="erroresValidacion && !validarApellidos"
+          mensajeError="Es necesario ingresar los apellidos de la persona"
+          class="mt-3 col-10"
+        />
+        <Input
+          v-model="persona.personal_telefono"
+          id="telefono"
+          titulo="Telefono"
+          tipo="number"
+          placeholder="Ingrese el teléfono de la persona"
+          :maxlength="10"
+          :error="erroresValidacion && !validarTelefono"
+          mensajeError="Es necesario ingresar el teléfono"
+          class="mt-3 col-10"
+        />
+        <Input
+          v-model="persona.personal_direccion"
+          id="direccion"
+          titulo="Dirección"
+          placeholder="Ingrese la dirección de la persona"
+          :maxlength="150"
+          :error="erroresValidacion && !validarDireccion"
+          mensajeError="Es necesario ingresar la dirección"
+          class="mt-3 col-10"
+        />
+      </div>
+      <b-button type="submit" class="mt-4 boton-guardar" variant="dark">Guardar</b-button>
     </b-form>
   </div>
 </template>

@@ -1,78 +1,80 @@
 <template>
   <div>
     <h1>Editar Estatus</h1>
-    <b-form @submit.prevent="guardarTicket()">
-      <Input
-        v-model="ticket.ticket_nombre"
-        id="nombre"
-        titulo="Nombre"
-        placeholder="Ingrese el nombre del ticket"
-        :maxlength="50"
-        :disabled= true
-        class="mt-3"
-      />
-      <Input
-        v-model="ticket.ticket_descripcion"
-        id="descripcion"
-        titulo="Descripción"
-        placeholder="Ingrese la descripción del ticket"
-        :maxlength="100"
-        :disabled= true
-        class="mt-3"
-      />
-      <Select
-        :items="optionsprioridad"
-        v-model="ticket.ticket_prioridad"
-        :vmodel="ticket.ticket_prioridad"
-        id="prioridad"
-        iditem="id"
-        name="nombre"
-        titulo="Prioridad"
-        :error="erroresValidacion && !validarPrioridad"
-        mensajeError="Es necesario ingresar la prioridad"
-        :disabled= true
-        class="mt-3"
-      />
-      <Select
-        :items="personal"
-        v-model="ticket.personal_id"
-        :vmodel="ticket.personal_id"
-        id="personal"
-        iditem="personal_id"
-        name="personal_nombre"
-        lastname="personal_apellidos"
-        titulo="Personal"
-        :error="erroresValidacion && !validarPersonal"
-        mensajeError="Es necesario ingresar el personal"
-        :disabled= true
-        class="mt-3"
-      />
-      <Select
-        :items="categorias"
-        v-model="ticket.categoria_id"
-        :vmodel="ticket.categoria_id"
-        id="categoria"
-        iditem="categoria_id"
-        name="categoria_nombre"
-        titulo="Categoría"
-        :error="erroresValidacion && !validarCategoria"
-        mensajeError="Es necesario ingresar la categoria"
-        :disabled= true
-        class="mt-3"
-      />
-      <Select
-        :items="optionsestatus"
-        v-model="ticket.ticket_estatus"
-        :vmodel="ticket.ticket_estatus"
-        id="estatus"
-        iditem="id"
-        name="nombre"
-        titulo="Estatus"
-        :error="erroresValidacion && !validarEstatus"
-        mensajeError="Es necesario ingresar el estatus"
-        class="mt-3"
-      />
-      <b-button type="submit" class="mt-2" variant="primary">Guardar</b-button>
+    <b-form class="formulario mt-2" @submit.prevent="guardarTicket()">
+      <div class="inputs">
+        <Input
+          v-model="ticket.ticket_nombre"
+          id="nombre"
+          titulo="Nombre"
+          placeholder="Ingrese el nombre del ticket"
+          :maxlength="50"
+          :disabled= true
+          class="mt-2 col-10"
+        />
+        <Input
+          v-model="ticket.ticket_descripcion"
+          id="descripcion"
+          titulo="Descripción"
+          placeholder="Ingrese la descripción del ticket"
+          :maxlength="100"
+          :disabled= true
+          class="mt-3 col-10"
+        />
+        <Select
+          :items="optionsprioridad"
+          v-model="ticket.ticket_prioridad"
+          :vmodel="ticket.ticket_prioridad"
+          id="prioridad"
+          iditem="id"
+          name="nombre"
+          titulo="Prioridad"
+          :error="erroresValidacion && !validarPrioridad"
+          mensajeError="Es necesario ingresar la prioridad"
+          :disabled= true
+          class="mt-3 col-10"
+        />
+        <Select
+          :items="personal"
+          v-model="ticket.personal_id"
+          :vmodel="ticket.personal_id"
+          id="personal"
+          iditem="personal_id"
+          name="personal_nombre"
+          lastname="personal_apellidos"
+          titulo="Personal"
+          :error="erroresValidacion && !validarPersonal"
+          mensajeError="Es necesario ingresar el personal"
+          :disabled= true
+          class="mt-3 col-10"
+        />
+        <Select
+          :items="categorias"
+          v-model="ticket.categoria_id"
+          :vmodel="ticket.categoria_id"
+          id="categoria"
+          iditem="categoria_id"
+          name="categoria_nombre"
+          titulo="Categoría"
+          :error="erroresValidacion && !validarCategoria"
+          mensajeError="Es necesario ingresar la categoria"
+          :disabled= true
+          class="mt-3 col-10"
+        />
+        <Select
+          :items="optionsestatus"
+          v-model="ticket.ticket_estatus"
+          :vmodel="ticket.ticket_estatus"
+          id="estatus"
+          iditem="id"
+          name="nombre"
+          titulo="Estatus"
+          :error="erroresValidacion && !validarEstatus"
+          mensajeError="Es necesario ingresar el estatus"
+          class="mt-3 col-10"
+        />
+      </div>
+      <b-button type="submit" class="mt-3 boton-guardar" variant="dark">Guardar</b-button>
     </b-form>
   </div>
 </template>

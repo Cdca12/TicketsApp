@@ -54,12 +54,11 @@ export default {
     vertical-align: middle;
     width: 280px;
     height: 170px;
-    /* max-height:160px; */
     text-align: center;
-    border: 3px solid rgb(117, 112, 112);
     border-radius: 5px;
     margin: 10px 10px;
     color: white;
+    box-shadow: 0px 10px 20px -7px rgba(32, 56, 117, 0.35);
 }
 
 .title {
@@ -68,7 +67,8 @@ export default {
     justify-content: center;
     width: 100%;
     height: 40px;
-    border-bottom: 3px solid rgb(0, 0, 0);
+    border-bottom: 3px solid rgba(0, 0, 0, 0.733);
+    
 }
 
 .content {
@@ -96,7 +96,7 @@ export default {
     font-size: 14px;
     background: #eee;
     border-radius: 5px;
-    color: #999;
+    color: rgb(107, 107, 107);
     display: inline-block;
     line-height: 26px;
     padding: 0 20px 0 23px;

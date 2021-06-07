@@ -1,20 +1,22 @@
 <template>
 	<div>
 		<h1>Agregar Categoria</h1>
-		<b-form @submit.prevent="guardarCategoria()">
-			<Input
-				v-model="categoria.categoria_nombre"
-				id="nombre"
-				titulo="Nombre"
-				placeholder="Ingrese el nombre de la categoría"
-				:maxlength="50"
-				:error="erroresValidacion && !validacionNombre"
-				mensajeError="Es necesario ingresar el nombre"
-				class="mt-3"
-			/>
-			<b-button type="submit" class="mt-2" variant="primary"
-				>Guardar</b-button
-			>
+		<b-form class="formulario" @submit.prevent="guardarCategoria()">
+			<div class="inputs">
+				<Input
+					v-model="categoria.categoria_nombre"
+					id="nombre"
+					titulo="Nombre"
+					placeholder="Ingrese el nombre de la categoría"
+					:maxlength="50"
+					:error="erroresValidacion && !validacionNombre"
+					mensajeError="Es necesario ingresar el nombre"
+					class="mt-3 col-10"
+				/>
+				<b-button type="submit" class="mt-4 boton-guardar" variant="dark"
+					>Guardar</b-button
+				>
+			</div>
 		</b-form>
 	</div>
 </template>

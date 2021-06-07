@@ -1,10 +1,12 @@
 <template>
   <div>
     <h1>Categorías</h1>
-    <b-button variant="dark" to="categorias/agregar">
-      <b-icon icon="plus" /> Agregar
-    </b-button>
-    <Table :items="categorias" :fields="campos" :busy="loading">
+    <div class="boton-agregar">
+      <b-button variant="dark" to="categorias/agregar">
+        <b-icon icon="plus" /> Agregar
+      </b-button>
+    </div>
+    <Table :items="categorias" :fields="campos" :busy="loading" >
       <template slot="actions" slot-scope="{ item }">
         <b-button variant="danger" @click="onEliminar(item)">
           <b-icon icon="trash" /> Eliminar
