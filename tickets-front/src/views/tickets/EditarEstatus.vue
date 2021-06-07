@@ -1,15 +1,14 @@
 <template>
   <div>
-    <h1>Agregar Ticket</h1>
-    <b-form @submit.prevent="agregarTicket()">
+    <h1>Editar Estatus</h1>
+    <b-form @submit.prevent="guardarTicket()">
       <Input
         v-model="ticket.ticket_nombre"
         id="nombre"
         titulo="Nombre"
         placeholder="Ingrese el nombre del ticket"
         :maxlength="50"
-        :error="erroresValidacion && !validarNombre"
-        mensajeError="Es necesario ingresar el nombre"
+        :disabled= true
         class="mt-3"
       />
       <Input
@@ -18,22 +17,26 @@
         titulo="Descripción"
         placeholder="Ingrese la descripción del ticket"
         :maxlength="100"
+        :disabled= true
         class="mt-3"
       />
       <Select
         :items="optionsprioridad"
         v-model="ticket.ticket_prioridad"
+        :vmodel="ticket.ticket_prioridad"
         id="prioridad"
         iditem="id"
         name="nombre"
         titulo="Prioridad"
         :error="erroresValidacion && !validarPrioridad"
         mensajeError="Es necesario ingresar la prioridad"
+        :disabled= true
         class="mt-3"
       />
       <Select
         :items="personal"
         v-model="ticket.personal_id"
+        :vmodel="ticket.personal_id"
         id="personal"
         iditem="personal_id"
         name="personal_nombre"
@@ -41,17 +44,32 @@
         titulo="Personal"
         :error="erroresValidacion && !validarPersonal"
         mensajeError="Es necesario ingresar el personal"
+        :disabled= true
         class="mt-3"
       />
       <Select
         :items="categorias"
         v-model="ticket.categoria_id"
+        :vmodel="ticket.categoria_id"
         id="categoria"
         iditem="categoria_id"
         name="categoria_nombre"
         titulo="Categoría"
         :error="erroresValidacion && !validarCategoria"
         mensajeError="Es necesario ingresar la categoria"
+        :disabled= true
+        class="mt-3"
+      />
+      <Select
+        :items="optionsestatus"
+        v-model="ticket.ticket_estatus"
+        :vmodel="ticket.ticket_estatus"
+        id="estatus"
+        iditem="id"
+        name="nombre"
+        titulo="Estatus"
+        :error="erroresValidacion && !validarEstatus"
+        mensajeError="Es necesario ingresar el estatus"
         class="mt-3"
       />
       <b-button type="submit" class="mt-2" variant="primary">Guardar</b-button>
@@ -61,14 +79,15 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
-import Select from '../../components/Select.vue';
-import Input from '../../components/Input.vue';
+import Select from "../../components/Select.vue";
+import Input from "../../components/Input.vue";
+import Vue from 'vue'
 
 export default {
-  name: "AgregarTicket",
+  name: "EditarTicket",
   components: {
     Select,
-    Input
+    Input,
   },
   data() {
     return {
@@ -76,6 +95,7 @@ export default {
         ticket_nombre: "",
         ticket_descripcion: "",
         ticket_prioridad: "",
+        ticket_estatus: "",
         personal_id: "",
         categoria_id: "",
       },
@@ -83,41 +103,50 @@ export default {
       optionsprioridad: [
         { id: 1, nombre: "BAJA" },
         { id: 2, nombre: "MEDIA" },
-        { id: 3, nombre: "ALTA" }
+        { id: 3, nombre: "ALTA" },
+      ],
+      optionsestatus: [
+        { id: "ABT", nombre: "Abierto" },
+        { id: "ESP", nombre: "En espera" },
+        { id: "FIN", nombre: "Finalizado" },
       ],
       erroresValidacion: false,
     };
   },
   computed: {
-    ...mapState(["personal", "categorias"]),
-    validarNombre() {
-      return (
-        this.ticket.ticket_nombre !== undefined &&
-        this.ticket.ticket_nombre.trim() !== ""
-      );
-    },
+    ...mapState(["personal", "categorias", "tickets"]),
     validarPrioridad() {
       return (
-        this.ticket.ticket_prioridad !== ""
+        this.ticket.ticket_prioridad !== null
       );
     },
     validarPersonal() {
       return (
-        this.ticket.personal_id !== ""
+        this.ticket.personal_id !== null
       );
     },
     validarCategoria() {
       return (
-        this.ticket.categoria_id !== ""
+        this.ticket.categoria_id !== null
+      );
+    },
+    validarEstatus() {
+      return (
+        this.ticket.categoria_id !== null
       );
     },
   },
   methods: {
-    ...mapActions(["crearTicket", "setPersonal", "setCategorias"]),
-    agregarTicket() {
+    ...mapActions([
+      "setPersonal",
+      "setCategorias",
+      "obtenerTicket",
+      "editarTicket",
+    ]),
+    guardarTicket() {
+      console.log(this.ticket)
       if (
         !(
-          this.validarNombre &&
           this.validarPrioridad &&
           this.validarPersonal &&
           this.validarCategoria
@@ -128,7 +157,8 @@ export default {
       } else {
         // Agregar ticket
         this.erroresValidacion = false;
-        this.crearTicket({
+        this.editarTicket({
+          id: this.$route.params.id,
           params: this.ticket,
           onComplete: (res) => {
             this.$notify({
@@ -151,10 +181,15 @@ export default {
   },
   // Life Cycle methods
   created() {
-    this.setPersonal(),
-    this.setCategorias();
+    this.setPersonal(), this.setCategorias(),
+    this.obtenerTicket({
+          id: this.$route.params.id,
+          onComplete: res => Vue.set(this, 'ticket', res.data.data)
+      })
   },
 };
+
+//TODO: Hacer que se ponga en el combo la opcion inicial y terminar el editar aqui en ticket
 </script>
 
 <style></style>

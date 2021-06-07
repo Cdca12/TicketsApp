@@ -17,7 +17,7 @@ function listarTickets(req, res) {
 function obtenerTicket(req, res) {
 	if (connection) {
 		const ticket_id = req.params.id;
-		let sql = `SELECT * FROM vTicket WHERE ticket_id = ${connection.escape(
+		let sql = `SELECT * FROM TICKET WHERE ticket_id = ${connection.escape(
 			ticket_id
 		)}`;
 		connection.query(sql, (err, ticket) => {
@@ -242,6 +242,8 @@ function editarTicket(req, res) {
 									let mensaje = "";
 									if (data.changedRows === 0) {
 										mensaje = "La información es la misma";
+									}else {
+										mensaje = "Se actualizaron los datos del ticket correctamente"
 									}
 
 									res.json({ error: false, data, mensaje });

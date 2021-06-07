@@ -4,58 +4,58 @@ import axios from "axios";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-	state: {
-		tickets: [],
-		categorias: [],
-		categoria: {},
-		personal: [],
-		persona: {},
-		ticket: {},
-		loading: false,
-	},
-	mutations: {
-		SET_TICKETS(state, tickets) {
-			state.tickets = tickets;
-		},
-		SET_CATEGORIAS(state, categorias) {
-			state.categorias = categorias;
-		},
-		SET_PERSONAL(state, personal) {
-			state.personal = personal;
-		},
-		SET_PERSONA(state, persona) {
-			state.persona = persona;
-		},
-		SET_LOADING(state, payload) {
-			state.loading = payload;
-		},
-		SET_TICKET(state, ticket) {
-			state.ticket = ticket;
-		},
-	},
-	actions: {
-		// Tickets
-		setTickets({ commit }) {
-			axios.get("http://localhost:3000/ticket").then((response) => {
-				commit("SET_TICKETS", response.data);
-			});
-		},
-		crearTickets({ commit }, { params, onComplete, onError }) {
-			axios
-				.post("http://localhost:3000/ticket", params)
-				.then(onComplete)
-				.catch(onError);
-		},
-		obtenerTickets({ commit }, { id, onComplete, onError }) {
-			axios
-				.get(`http://localhost:3000/ticket/${id}`)
-				.then((res) => {
-					commit("SET_PERSONA", res.data.data);
-					onComplete(res);
-				})
-				.catch(onError);
-		},
-		obtenerTicketCategoria({ commit }, id) {
+  state: {
+    tickets: [],
+    categorias: [],
+    categoria: {},
+    personal: [],
+    persona: {},
+    ticket: {},
+    loading: false,
+  },
+  mutations: {
+    SET_TICKETS(state, tickets) {
+      state.tickets = tickets;
+    },
+    SET_CATEGORIAS(state, categorias) {
+      state.categorias = categorias;
+    },
+    SET_PERSONAL(state, personal) {
+      state.personal = personal;
+    },
+    SET_PERSONA(state, persona) {
+      state.persona = persona;
+    },
+    SET_LOADING(state, payload) {
+      state.loading = payload;
+    },
+    SET_TICKET(state, ticket) {
+      state.ticket = ticket;
+    }
+  },
+  actions: {
+    // Tickets
+    setTickets({ commit }) {
+      axios.get("http://localhost:3000/ticket").then((response) => {
+        commit("SET_TICKETS", response.data);
+      });
+    },
+    crearTicket({ commit }, { params, onComplete, onError }) {
+      axios
+        .post("http://localhost:3000/ticket", params)
+        .then(onComplete)
+        .catch(onError);
+    },
+    obtenerTicket({ commit }, { id, onComplete, onError }) {
+      axios
+        .get(`http://localhost:3000/ticket/${id}`)
+        .then((res) => {
+          commit("SET_TICKET", res.data.data);
+          onComplete(res);
+        })
+        .catch(onError);
+    },
+    obtenerTicketCategoria({ commit }, id) {
 			axios
 				.get(`http://localhost:3000/ticketCategoria/${id}`)
 				.then((res) => {
@@ -63,18 +63,18 @@ export default new Vuex.Store({
 					commit("SET_TICKETS", res.data.data);
 				});
 		},
-		editarTickets({ commit }, { id, params, onComplete, onError }) {
-			axios
-				.put(`http://localhost:3000/ticket/${id}`, params)
-				.then(onComplete)
-				.catch(onError);
-		},
-		eliminarTickets({ commit }, { id, onComplete, onError }) {
-			axios
-				.delete(`http://localhost:3000/ticket/${id}`)
-				.then(onComplete)
-				.catch(onError);
-		},
+    editarTicket({ commit }, { id, params, onComplete, onError }) {
+      axios
+        .put(`http://localhost:3000/ticket/${id}`, params)
+        .then(onComplete)
+        .catch(onError);
+    },
+    eliminarTicket({ commit }, { id, onComplete, onError }) {
+      axios
+        .delete(`http://localhost:3000/ticket/${id}`)
+        .then(onComplete)
+        .catch(onError);
+    },
 
 		// Categorías
 		setCategorias({ commit }) {

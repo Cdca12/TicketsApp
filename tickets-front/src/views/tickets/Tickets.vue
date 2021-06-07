@@ -4,7 +4,8 @@
     <b-button variant="primary" to="tickets/agregar">Agregar</b-button>
     <Table :items="tickets" :fields="campos">   
       <template slot="actions" slot-scope="{ item }">
-        <b-button variant="primary" class="mb-2" @click="onEditar(item)">Editar</b-button>
+        <b-button variant="primary" class="mb-2" @click="onEditarTicket(item)">Editar</b-button>
+        <b-button variant="outline-primary" class="mb-2 mx-2" @click="onEditarEstatus(item)">Cambiar estatus</b-button>
         <b-button variant="danger" @click="onEliminar(item)">Eliminar</b-button>
       </template>
     </Table>
@@ -38,19 +39,27 @@ export default {
     ...mapState(["tickets"]),
   },
   methods: {
-    ...mapActions(["setTickets"]),
-    /* onEditar(item) {
+    ...mapActions(["setTickets", "eliminarTicket"]),
+    onEditarTicket(item) {
       this.$router.push({
-        name: "EditarPersonal",
+        name: "EditarTicket",
         params: {
-          id: item.item.personal_id,
+          id: item.item.ticket_id,
+        },
+      });
+    },
+    onEditarEstatus(item) {
+      this.$router.push({
+        name: "EditarEstatus",
+        params: {
+          id: item.item.ticket_id,
         },
       });
     },
     onEliminar(item) {
       this.$bvModal
         .msgBoxConfirm("¿Está seguro que desea eliminar?", {
-          title: "Eliminar Personal",
+          title: "Eliminar Ticket",
           size: "sm",
           buttonSize: "sm",
           okVariant: "danger",
@@ -61,15 +70,14 @@ export default {
         })
         .then((value) => {
           if (value) {
-            this.eliminarPersonal({
-              id: item.item.personal_id,
-
+            this.eliminarTicket({
+              id: item.item.ticket_id,
               onComplete: (response) => {
                 this.$notify({
-                  type: "warn",
+                  type: "success",
                   title: response.data.mensaje,
                 });
-                setTimeout(() => this.setPersonal(), 1000);
+                setTimeout(() => this.setTickets(), 1000);
               },
               onError: (err) => {
                 this.$notify({
@@ -83,7 +91,7 @@ export default {
         .catch((err) => {
           // An error occurred
         });
-    }, */
+    }, 
   },
   // Life cycle methods
   created() {

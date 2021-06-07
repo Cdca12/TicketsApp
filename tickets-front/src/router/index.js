@@ -9,7 +9,7 @@ import EditarPersonal from "../views/personal/EditarPersonal.vue";
 import Tickets from "../views/tickets/Tickets.vue";
 import AgregarTicket from "../views/tickets/AgregarTicket.vue";
 import EditarTicket from "../views/tickets/EditarTicket.vue";
-
+import EditarEstatus from "../views/tickets/EditarEstatus.vue";
 
 Vue.use(VueRouter);
 
@@ -55,9 +55,14 @@ const routes = [
     component: AgregarTicket,
   },
   {
-    path: "/tickets/editar/:id",
+    path: "/tickets/editarticket/:id",
     name: "EditarTicket",
     component: EditarTicket,
+  },
+  {
+    path: "/tickets/editarestatus/:id",
+    name: "EditarEstatus",
+    component: EditarEstatus,
   }
 ];
 
