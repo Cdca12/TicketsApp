@@ -2,12 +2,15 @@
   <div v-bind:class="['tarjeta', cardColor]">
       
     <div class="title">
+        <span class="showSpaces" v-if="id">#{{ id }} </span>
         {{ titulo }}  
     </div>
     <div class="content">
         {{ mensaje }} <br>
-        <div v-for="tag in tags" v-bind:key="tag" class="tags">
-            {{ tag }}
+        <div class="tags">
+            <div v-for="tag in tags" v-bind:key="tag" class="tag">
+                {{ tag }}
+            </div>
         </div>
     </div>
   </div>
@@ -20,6 +23,7 @@ export default {
 
     },
     props: {
+        id: [String, Number],
         titulo: [String, Number],
         mensaje: String,
         tags: Array,
@@ -47,6 +51,7 @@ export default {
 
 .tarjeta {
     display: inline-block;
+    vertical-align: middle;
     width: 280px;
     height: 170px;
     /* max-height:160px; */
@@ -62,7 +67,7 @@ export default {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 45px;
+    height: 40px;
     border-bottom: 3px solid rgb(0, 0, 0);
 }
 
@@ -74,16 +79,24 @@ export default {
 }
 
 .tags {
+    display: inline-block;
+    position:relative;
+}
+
+.tag {
     background-color: rgb(104, 90, 90);
-    color: white;
     font-weight: bold;
     font-size: 12px;
-    width: max-content;
+    /* width: max-content; */
     display: inline-block;
-    /* margin-top: 10px; */
-    margin: 30px 5px 0px 0px;
+    margin: 30px 5px -20px 0px;
+    
     padding: 5px;
-    position: relative;
+    /* position: relative; */
     /* bottom: 0; */
+}
+
+.showSpaces{
+  white-space: pre;
 }
 </style>

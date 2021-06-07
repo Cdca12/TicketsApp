@@ -1,7 +1,11 @@
 <template>
   <div>
     <h1>Tickets</h1>
-    <b-button variant="primary" to="tickets/agregar">Agregar</b-button>
+    <div class="boton-agregar">
+    <b-button  variant="primary" to="tickets/agregar">Agregar</b-button></b-col>
+
+    </div>
+    
     <Table :items="tickets" :fields="campos">   
       <template slot="actions" slot-scope="{ item }">
         <b-button variant="primary" class="mb-2" @click="onEditarTicket(item)">Editar</b-button>
@@ -100,4 +104,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.boton-agregar {
+  float: right;
+  margin-right: 5%;
+}  
+</style>

@@ -1,16 +1,16 @@
 <template>
 	<div id="app">
-		<b-navbar type="dark" variant="dark" toggleable>
-			<b-navbar-brand tag="h1" class="mx-2" to="/">
+		<b-navbar type="dark" variant="dark" class="justify-content-md-center" toggleable="lg">
+			<b-navbar-brand tag="h1" class="mx-4" to="/">
 				Inicio
 			</b-navbar-brand>
-			<b-navbar-brand tag="h1" class="mx-2" to="/tickets">
+			<b-navbar-brand tag="h1" class="mx-4" to="/tickets">
 				Tickets
 			</b-navbar-brand>
-			<b-navbar-brand tag="h1" class="mx-2" to="/personal">
+			<b-navbar-brand tag="h1" class="mx-4" to="/personal">
 				Personal
 			</b-navbar-brand>
-			<b-navbar-brand tag="h1" class="mx-2" to="/categorias">
+			<b-navbar-brand tag="h1" class="mx-4" to="/categorias">
 				Categorías
 			</b-navbar-brand>
 		</b-navbar>
@@ -28,16 +28,5 @@
 	color: #2c3e50;
 }
 
-#nav {
-	padding: 30px;
-}
 
-#nav a {
-	font-weight: bold;
-	color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-	color: #42b983;
-}
 </style>

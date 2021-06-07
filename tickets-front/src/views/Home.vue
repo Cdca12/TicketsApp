@@ -18,9 +18,10 @@
 
 			<div class="tickets">
 				<Card
-					:color="obtenerColor(t.ticket_estatus)"
 					v-for="t in ticketsFiltrados"
 					:key="t.ticket_id"
+					:color="obtenerColor(t.ticket_estatus)"
+					:id="t.ticket_id"
 					:titulo="t.ticket_nombre"
 					:mensaje="t.ticket_descripcion"
 					:tags="[obtenerPrioridad(t.ticket_prioridad), obtenerEstatus(t.ticket_estatus)] "/>
@@ -112,6 +113,7 @@ export default {
 <style>
 .tickets {
 	display: inline-block;
+	align-content: center;
 	margin-top: 20px;
 	/* justify-content: space-around; */
 	width: 90%;
